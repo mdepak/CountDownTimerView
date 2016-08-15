@@ -59,7 +59,6 @@ public class CountDownTimerView extends LinearLayout {
 
     public void setTimeIntervalInMilliseconds(long timeIntervalInMilliseconds) {
         this.timeIntervalInMilliseconds = timeIntervalInMilliseconds;
-        onFinishInflate();
     }
 
     private void initializeViews(Context context, AttributeSet attributeSet) {
@@ -81,35 +80,33 @@ public class CountDownTimerView extends LinearLayout {
         innerPaint.setAntiAlias(true);
         innerPaint.setStyle(Paint.Style.FILL);
         innerPaint.setStrokeWidth(strokeWidth);
-        innerPaint.setColor(Color.BLACK);
+        innerPaint.setColor(insideColor);
 
         Paint progressPaint = new Paint();
         progressPaint.setAntiAlias(true);
         progressPaint.setStyle(Paint.Style.STROKE);
         progressPaint.setStrokeWidth(strokeWidth);
         progressPaint.setStrokeCap(Paint.Cap.ROUND);
-        progressPaint.setColor(Color.LTGRAY);
+        progressPaint.setColor(progressColor);
 
         Paint pendingPaint = new Paint();
         pendingPaint.setAntiAlias(true);
         pendingPaint.setStyle(Paint.Style.STROKE);
         pendingPaint.setStrokeWidth(strokeWidth);
         pendingPaint.setStrokeCap(Paint.Cap.ROUND);
-        pendingPaint.setColor(Color.BLUE);
+        pendingPaint.setColor(leftColor);
+//
+//        if (insideColor != 0) {
+//            innerPaint.setColor(insideColor);
+//        }
+//        if (progressColor != 0) {
+//            progressPaint.setColor(progressColor);
+//        }
+//        if (leftColor != 0) {
+//            pendingPaint.setColor(leftColor);
+//        }
 
-        if (insideColor != 0) {
-            innerPaint.setColor(insideColor);
-        }
-        if (progressColor != 0) {
-            progressPaint.setColor(progressColor);
-        }
-        if (leftColor != 0) {
-            pendingPaint.setColor(leftColor);
-        }
-        if (bgColor != 0) {
-            circle.setBackgroundColor(bgColor);
-        }
-
+        circle.setBackgroundColor(bgColor);
         circle.setPendingPaint(pendingPaint);
         circle.setProgressPaint(progressPaint);
         circle.setInnerPaint(innerPaint);
@@ -117,7 +114,7 @@ public class CountDownTimerView extends LinearLayout {
         circle.bringToFront();
 
         textView = (TextView) findViewById(R.id.sidespinner_view_current_value);
-        textView.setTextAppearance(context,timerTextStyleId);
+        textView.setTextAppearance(context, timerTextStyleId);
         textView.bringToFront();
     }
 
@@ -190,7 +187,7 @@ public class CountDownTimerView extends LinearLayout {
                 insideColor = ContextCompat.getColor(context, typedArray.getResourceId(R.styleable.CountDownTimerView_circleColor, R.color.circleColor));
                 progressColor = ContextCompat.getColor(context, typedArray.getResourceId(R.styleable.CountDownTimerView_progressColor, R.color.progressColor));
                 leftColor = ContextCompat.getColor(context, typedArray.getResourceId(R.styleable.CountDownTimerView_leftColor, R.color.leftColor));
-                timerTextStyleId = typedArray.getResourceId(R.styleable.CountDownTimerView_textStyle,R.style.TimerText);
+                timerTextStyleId = typedArray.getResourceId(R.styleable.CountDownTimerView_textStyle, R.style.TimerText);
             } finally {
                 typedArray.recycle();
             }
