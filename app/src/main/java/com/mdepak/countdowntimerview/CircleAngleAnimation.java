@@ -9,7 +9,6 @@ import android.view.animation.Transformation;
 public class CircleAngleAnimation extends Animation {
 
     private Circle circle;
-
     private float oldAngle;
     private float newAngle;
 

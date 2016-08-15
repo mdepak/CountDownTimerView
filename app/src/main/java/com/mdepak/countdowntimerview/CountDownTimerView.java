@@ -2,10 +2,12 @@ package com.mdepak.countdowntimerview;
 
 import android.annotation.TargetApi;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Build;
 import android.os.CountDownTimer;
+import android.support.v4.content.ContextCompat;
 import android.text.format.DateUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -20,35 +22,35 @@ public class CountDownTimerView extends LinearLayout {
     private Context context;
     private Circle circle;
     private TextView textView;
-    long timeIntervalInMilliseconds = 0;
+    private long timeIntervalInMilliseconds = 0;
     private CountDownTimer countDownTimer;
-    public long timeLeft = 0;
-    int strokeWidth = 10;
-    private static final String LOG_TAG = "CountDownTimerView";
-    int bgColor;
-    int insideColor;
-    int leftColor;
-    int progressColor;
+    private long timeLeft = 0;
+    private int strokeWidth = 10;
+    private int bgColor;
+    private int insideColor;
+    private int leftColor;
+    private int progressColor;
+    private int timerTextStyleId;
 
     public CountDownTimerView(Context context) {
         super(context);
-        initializeViews(context);
+        initializeViews(context, null);
     }
 
     public CountDownTimerView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        initializeViews(context);
+        initializeViews(context, attrs);
     }
 
     public CountDownTimerView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initializeViews(context);
+        initializeViews(context, attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public CountDownTimerView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
-        initializeViews(context);
+        initializeViews(context, attrs);
     }
 
     public long getTimeIntervalInMilliseconds() {
@@ -60,11 +62,12 @@ public class CountDownTimerView extends LinearLayout {
         onFinishInflate();
     }
 
-    private void initializeViews(Context context) {
+    private void initializeViews(Context context, AttributeSet attributeSet) {
         this.context = context;
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.count_down_timer_view, this);
+        getViewAttributes(attributeSet);
     }
 
 
@@ -114,6 +117,7 @@ public class CountDownTimerView extends LinearLayout {
         circle.bringToFront();
 
         textView = (TextView) findViewById(R.id.sidespinner_view_current_value);
+        textView.setTextAppearance(context,timerTextStyleId);
         textView.bringToFront();
     }
 
@@ -173,6 +177,24 @@ public class CountDownTimerView extends LinearLayout {
         animation.setDuration(timeLeft);
         animation.setInterpolator(context, android.R.anim.linear_interpolator);
         circle.startAnimation(animation);
+    }
+
+    private void getViewAttributes(AttributeSet attrs) {
+        if (attrs != null) {
+            TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.CountDownTimerView, 0, 0);
+
+            try {
+                strokeWidth = typedArray.getInt(R.styleable.CountDownTimerView_strokeWidth, 5);
+                timeIntervalInMilliseconds = (long) typedArray.getFloat(R.styleable.CountDownTimerView_timeInMilliSeconds, 0);
+                bgColor = ContextCompat.getColor(context, typedArray.getResourceId(R.styleable.CountDownTimerView_backgroundColor, R.color.viewBgColor));
+                insideColor = ContextCompat.getColor(context, typedArray.getResourceId(R.styleable.CountDownTimerView_circleColor, R.color.circleColor));
+                progressColor = ContextCompat.getColor(context, typedArray.getResourceId(R.styleable.CountDownTimerView_progressColor, R.color.progressColor));
+                leftColor = ContextCompat.getColor(context, typedArray.getResourceId(R.styleable.CountDownTimerView_leftColor, R.color.leftColor));
+                timerTextStyleId = typedArray.getResourceId(R.styleable.CountDownTimerView_textStyle,R.style.TimerText);
+            } finally {
+                typedArray.recycle();
+            }
+        }
     }
 
     public int getBgColor() {

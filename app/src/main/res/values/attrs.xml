@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CountDownTimerView">
+        <attr name="timeInMilliSeconds" format="float" />
+        <attr name="strokeWidth" format="integer" />
+        <attr name="backgroundColor" format="reference"/>
+        <attr name="circleColor" format="reference"/>
+        <attr name="progressColor" format="reference" />
+        <attr name="leftColor" format="reference" />
+        <attr name="textStyle" format="reference" />
+    </declare-styleable>
+</resources>

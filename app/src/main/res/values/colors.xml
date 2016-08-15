@@ -4,4 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#928d8f</color>
     <color name="viewBgColor">#a14e4e</color>
+    <color name="circleColor">#123213</color>
+    <color name="progressColor">#238900</color>
+    <color name="leftColor">#666666</color>
 </resources>

@@ -10,8 +10,12 @@
     tools:context="com.mdepak.countdowntimerview.MainActivity">
 
     <com.mdepak.countdowntimerview.CountDownTimerView
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        xmlns:timer="http://schemas.android.com/apk/res/com.mdepak.countdowntimerview"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        timer:strokeWidth = "10"
+        timer:timeInMilliSeconds = "30000"
+        
         android:id="@+id/countDown"/>
 
     <Button

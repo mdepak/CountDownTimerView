@@ -7,8 +7,14 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-    <style name="timeText">
 
+    <style name="TimerText" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:shadowColor">#f030ff</item>
+        <item name="android:textColor">#bbbbbb</item>
+        <item name="android:shadowDx">0.0</item>
+        <item name="android:shadowDy">0.0</item>
+        <item name="android:shadowRadius">10</item>
     </style>
 
 </resources>
