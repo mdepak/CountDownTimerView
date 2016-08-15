@@ -95,16 +95,6 @@ public class CountDownTimerView extends LinearLayout {
         pendingPaint.setStrokeWidth(strokeWidth);
         pendingPaint.setStrokeCap(Paint.Cap.ROUND);
         pendingPaint.setColor(leftColor);
-//
-//        if (insideColor != 0) {
-//            innerPaint.setColor(insideColor);
-//        }
-//        if (progressColor != 0) {
-//            progressPaint.setColor(progressColor);
-//        }
-//        if (leftColor != 0) {
-//            pendingPaint.setColor(leftColor);
-//        }
 
         circle.setBackgroundColor(bgColor);
         circle.setPendingPaint(pendingPaint);
