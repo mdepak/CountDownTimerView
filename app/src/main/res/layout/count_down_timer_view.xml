@@ -20,8 +20,9 @@
 
         <com.mdepak.countdowntimerview.Circle
             android:id="@+id/innerCircle"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_gravity="center_vertical|center_horizontal"/>
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:background="@color/viewBgColor" />
     </FrameLayout>
 </merge>

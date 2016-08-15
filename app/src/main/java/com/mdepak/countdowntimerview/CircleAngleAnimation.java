@@ -22,9 +22,8 @@ public class CircleAngleAnimation extends Animation {
     @Override
     protected void applyTransformation(float interpolatedTime, Transformation transformation) {
 
-//        float angle = oldAngle + (Math.abs(newAngle - oldAngle) * interpolatedTime);
         float angle = oldAngle + ((newAngle - oldAngle) * interpolatedTime);
-        
+
         circle.setAngle(angle);
         circle.requestLayout();
     }

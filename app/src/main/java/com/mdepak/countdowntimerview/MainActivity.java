@@ -1,5 +1,6 @@
 package com.mdepak.countdowntimerview;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -17,12 +18,17 @@ public class MainActivity extends AppCompatActivity {
     Button pauseBtn;
     Button resumeBtn;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         timer = (CountDownTimerView) findViewById(R.id.countDown);
+
+        timer.setProgressColor(Color.GREEN);
+        timer.setLeftColor(Color.RED);
+        timer.setInsideColor(Color.WHITE);
+        timer.setBgColor(Color.GRAY);
+
         startBtn = (Button) findViewById(R.id.startBtn);
         stopBtn = (Button) findViewById(R.id.stopBtn);
         pauseBtn = (Button) findViewById(R.id.pauseBtn);

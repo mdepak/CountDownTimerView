@@ -58,7 +58,6 @@ public class Circle extends View {
 
     public void reset() {
         angle = 0;
-//        strokeWidth = 0;
         this.invalidate();
     }
 
