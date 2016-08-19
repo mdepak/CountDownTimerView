@@ -3,11 +3,11 @@ package com.mdepak.countdowntimerview;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.TextViewCompat;
 import android.text.format.DateUtils;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -104,12 +104,13 @@ public class CountDownTimerView extends LinearLayout {
         circle.bringToFront();
 
         textView = (TextView) findViewById(R.id.sidespinner_view_current_value);
-        textView.setTextAppearance(context, timerTextStyleId);
+//        textView.setTextAppearance(context, timerTextStyleId);
+        TextViewCompat.setTextAppearance(textView, timerTextStyleId);
         textView.bringToFront();
     }
 
     private CountDownTimer getCountDownTimer(long timeIntervalInMilliseconds) {
-        CountDownTimer timer = new CountDownTimer(timeIntervalInMilliseconds, 1000) {
+        return new CountDownTimer(timeIntervalInMilliseconds, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 timeLeft = millisUntilFinished;
@@ -122,7 +123,6 @@ public class CountDownTimerView extends LinearLayout {
                 circle.reset();
             }
         };
-        return timer;
     }
 
     private String getParsedTime(long timeInMilliSeconds) {

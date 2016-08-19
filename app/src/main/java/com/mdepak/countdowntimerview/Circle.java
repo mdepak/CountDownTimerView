@@ -16,8 +16,11 @@ public class Circle extends View {
     private Paint innerPaint;
     private Paint progressPaint;
     private Paint pendingPaint;
-    int strokeWidth = 5;
+    private int strokeWidth = 5;
     private float angle;
+    private int smallestSide;
+    private int radius;
+    private RectF bounds;
 
     public int getStrokeWidth() {
         return strokeWidth;
@@ -30,6 +33,9 @@ public class Circle extends View {
     public Circle(Context context, AttributeSet attrs) {
         super(context, attrs);
         angle = 0;
+        smallestSide = getWidth() > getHeight() ? getHeight() : getWidth();
+        radius = smallestSide / 2;
+        bounds = new RectF(getStrokeWidth(), getStrokeWidth(), smallestSide - getStrokeWidth(), smallestSide - getStrokeWidth());
     }
 
     public void setInnerPaint(Paint innerPaint) {
@@ -43,10 +49,6 @@ public class Circle extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        int smallestSide = getWidth() > getHeight() ? getHeight() : getWidth();
-        int radius = smallestSide / 2;
-
-        RectF bounds = new RectF(getStrokeWidth(), getStrokeWidth(), smallestSide - getStrokeWidth(), smallestSide - getStrokeWidth());
         canvas.drawArc(bounds, angle + getStrokeWidth(), 360, true, pendingPaint);
         canvas.drawArc(bounds, START_ANGLE_POINT, angle, true, progressPaint);
         canvas.drawCircle(smallestSide / 2, smallestSide / 2, radius - (getStrokeWidth()), innerPaint);
