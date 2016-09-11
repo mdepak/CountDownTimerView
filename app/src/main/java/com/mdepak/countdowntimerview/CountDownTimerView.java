@@ -129,6 +129,9 @@ public class CountDownTimerView extends LinearLayout {
         return DateUtils.formatElapsedTime(timeInMilliSeconds);
     }
 
+    /**
+     *  Start the count down timer with the initialized settings
+     */
     public void startTimer() {
         circle.setStrokeWidth(strokeWidth);
         countDownTimer = getCountDownTimer(timeIntervalInMilliseconds);
@@ -140,23 +143,39 @@ public class CountDownTimerView extends LinearLayout {
         circle.startAnimation(animation);
     }
 
+    /**
+     * Resets the CountDownTimerView
+     * Once the view is reset it cannot be resumed.
+     */
     public void reset() {
         circle.reset();
         timeLeft = 0;
         countDownTimer.cancel();
     }
 
+    /**
+     *  Stops the count down timer view
+     *  Use pauseTimer() to stop for temporarily, this method stops the timer and to proceed you need to restart the timer again
+     */
     public void stopTimer() {
         circle.clearAnimation();
         countDownTimer.cancel();
         timeLeft = 0;
     }
 
+    /**
+     *  Pauses the CountDownTimer view and it can be resumed from the point it is stopped.
+     *
+     */
     public void pauseTimer() {
         countDownTimer.cancel();
         circle.clearAnimation();
     }
 
+    /**
+     * Resumes the timer from the point it is stopped.
+     *
+     */
     public void resumeTimer() {
         countDownTimer = getCountDownTimer(timeLeft);
         countDownTimer.start();
