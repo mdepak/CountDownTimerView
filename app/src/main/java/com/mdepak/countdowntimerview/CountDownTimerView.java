@@ -25,7 +25,7 @@ public class CountDownTimerView extends LinearLayout {
     private long timeIntervalInMilliseconds = 0;
     private CountDownTimer countDownTimer;
     private long timeLeft = 0;
-    private int strokeWidth = 10;
+    private int strokeWidth = 20;
     private int bgColor;
     private int insideColor;
     private int leftColor;
@@ -190,7 +190,7 @@ public class CountDownTimerView extends LinearLayout {
             TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.CountDownTimerView, 0, 0);
 
             try {
-                strokeWidth = typedArray.getInt(R.styleable.CountDownTimerView_strokeWidth, 5);
+                strokeWidth = typedArray.getInt(R.styleable.CountDownTimerView_strokeWidth, 20);
                 timeIntervalInMilliseconds = (long) typedArray.getFloat(R.styleable.CountDownTimerView_timeInMilliSeconds, 0);
                 bgColor = ContextCompat.getColor(context, typedArray.getResourceId(R.styleable.CountDownTimerView_backgroundColor, R.color.viewBgColor));
                 insideColor = ContextCompat.getColor(context, typedArray.getResourceId(R.styleable.CountDownTimerView_circleColor, R.color.circleColor));
